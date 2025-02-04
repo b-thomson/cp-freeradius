@@ -1,0 +1,31 @@
+#/opt/etc/raddb/mods-enabled/eap
+
+eap {
+        default_eap_type = tls
+        ignore_unknown_eap_types = no
+        tls-config tls-common {
+                chain rsa {
+                certificate_file = ${certdir}/server.pem
+                ca_file = ${certdir}/ca.pem
+                private_key_password = whatever
+                private_key_file = ${certdir}/server.key
+                include_root_ca = no
+                }
+        ca_file = ${cadir}/ca.pem
+        ca_path = ${cadir}
+        certificate_file = ${certdir}/server.pem
+        private_key_password = whatever
+        private_key_file = ${certdir}/server.key
+        cipher_list = "DEFAULT"
+        cipher_server_preference = yes
+        ecdh_curve = prime256v1
+        verify {
+                mode = client-and-issuer
+                attribute_mode = client-and-issuer
+                check_crl = yes
+                }
+        }
+        tls {
+                tls = tls-common
+                }      
+}

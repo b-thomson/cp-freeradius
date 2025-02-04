@@ -1,0 +1,27 @@
+#/opt/etc/raddb/sites-enabled/default
+
+server default {
+        namespace = radius
+        listen {
+                type = auth
+                ipaddr = *
+                port = 0
+        }
+        authorize {
+                filter_username
+                preprocess
+                eap
+                files
+                expiration
+                logintime
+                pap
+                }
+        authenticate {
+                Auth-Type EAP {
+                eap
+                }
+                Auth-Type PAP {
+                pap
+                }
+        }
+}

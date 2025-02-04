@@ -1,0 +1,5 @@
+#/opt/etc/raddb/mods-config/files/authorize
+
+cpadmin Cleartext-Password := "cp123456"
+        Service-Type = Administrative-User,
+        Reply-Message = "Hello, %{User-Name}"
